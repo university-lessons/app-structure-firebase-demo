@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import AppModal from "./src/components/AppModal";
 import firebaseConfig from "./src/config/firebaseConfig";
 import useFirebase from "./src/hooks/useFirebase";
 import Router from "./src/Router";
@@ -11,10 +12,12 @@ export default function App() {
   if (firebaseApp == null) return <Text>Loading...</Text>;
 
   return (
-    <View style={styles.container}>
-      <Router />
-      <StatusBar style="auto" />
-    </View>
+    <AppModal>
+      <View style={styles.container}>
+        <Router />
+        <StatusBar style="auto" />
+      </View>
+    </AppModal>
   );
 }
 

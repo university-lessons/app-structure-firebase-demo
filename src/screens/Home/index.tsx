@@ -10,8 +10,6 @@ export default function Home() {
   const recipes = useList("recipes");
   const recipesList = listToArray(recipes.data || {});
 
-  console.log(recipesList);
-
   const handleCreateRecipe = async () => {
     const newRecipe: RecipeShape = {
       name: "",
