@@ -11,11 +11,11 @@ export default function useAuth() {
   const [user, setUser] = useState(null);
 
   const login = (email, password) => {
-    signInWithEmailAndPassword(getAuth(), email, password);
+    return signInWithEmailAndPassword(getAuth(), email, password);
   };
 
   const logout = () => {
-    signOut(getAuth());
+    return signOut(getAuth());
   };
 
   useEffect(() => {

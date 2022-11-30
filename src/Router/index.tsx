@@ -1,11 +1,19 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import useAuth from "../hooks/useAuth";
 import Home from "../screens/Home";
+import Login from "../screens/Login";
 import Recipe from "../screens/Recipe";
 
 const Stack = createNativeStackNavigator();
 
 export default function Router() {
+  const { user } = useAuth();
+
+  if (!user) {
+    return <Login />;
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
