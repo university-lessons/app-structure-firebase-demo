@@ -12,10 +12,11 @@ import useAuth from "./useAuth";
 export default function useList(reference) {
   const [data, setData] = useState(null);
 
-  const create = (newVal) => {
+  const create = async (newVal) => {
     const databaseReference = ref(getDatabase(), reference);
     const newRef = push(databaseReference);
-    set(newRef, newVal);
+    await set(newRef, newVal);
+    return newRef.key;
   };
 
   const remove = (key) => {
