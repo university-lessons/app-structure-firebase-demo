@@ -24,13 +24,26 @@ export default function Home() {
     navigation.navigate("Recipe", { key: createdKey });
   };
 
+  const handleEdit = (key: string | undefined) => {
+    if (key) navigation.navigate("Recipe", { key });
+  };
+
+  const renderItem = (item: RecipeShape) => (
+    <View>
+      <Text>{item.name}</Text>
+      <Text>{item.description}</Text>
+      <Text>{item.directions}</Text>
+      <Button title="Edit" onPress={() => handleEdit(item.key)} />
+    </View>
+  );
+
   return (
     <View>
       <Text>Home Screen</Text>
       <Button onPress={handleCreateRecipe} title="Create Recipe" />
       <FlatList
         data={recipesList}
-        renderItem={(item) => <Text>{JSON.stringify(item)}</Text>}
+        renderItem={(itemInfo) => renderItem(itemInfo.item)}
       />
     </View>
   );

@@ -1,5 +1,5 @@
 import { View, Text, Button, TextInput } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import useReference from "../../hooks/useReference";
 
@@ -14,6 +14,14 @@ export default function Recipe() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [directions, setDirections] = useState("");
+
+  useEffect(() => {
+    if (recipe) {
+      setName(recipe.name);
+      setDescription(recipe.description);
+      setDirections(recipe.directions);
+    }
+  }, [recipe]);
 
   const handleSave = () => {
     let updatedRecipe = {
